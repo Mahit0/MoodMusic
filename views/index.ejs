@@ -1,74 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mood Music</title>
-    <link href="../public/styles.css" rel="stylesheet" > <!-- integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"-->
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= pageTitle || 'Mood Music' %></title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
-<!-- en tete humeur navigation -->
-<div class="container">
+<body>
+  <% const moodButtons = [
+    { id: 'home', icon: '🏠', active: true },
+    { id: 'happy', icon: '😊' },
+    { id: 'chill', icon: '😎' },
+    { id: 'sad', icon: '😭' },
+    { id: 'energy', icon: '🥳' },
+    { id: 'fun', icon: '🎯' }
+  ]; %>
+
+  <div class="container">
     <header class="d-flex justify-content-center py-3">
       <ul class="nav nav-pills">
-        <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">🏠</a></li>
-            <li id="happy" class="happy"><a href="#" class="nav-link">😊</a></li>
-            <li id="chill" class="chill"><a href="#" class="nav-link">😎</a></li>
-            <li id="sad" class="sad"><a href="#" class="nav-link">😭</a></li>
-            <li id="energy" class="energy"><a href="#" class="nav-link">🥳</a></li>
-            <li id="fun" class="fun"><a href="#" class="nav-link">🎯</a></li>
+        <% moodButtons.forEach((mood) => { %>
+          <li id="<%= mood.id %>" class="<%= mood.id %> <%= mood.active ? 'nav-item' : '' %>">
+            <a href="#" class="nav-link <%= mood.active ? 'active' : '' %>" <%= mood.active ? 'aria-current="page"' : '' %>><%= mood.icon %></a>
+          </li>
+        <% }); %>
       </ul>
     </header>
   </div>
-<body>
 
-  <!-- Lecteur de musique -->
-  <div class="music-player" id="player">
+  <main>
+    <div class="music-player" id="player">
+      <button class="btn-favorite" id="btnFavorite" aria-label="Ajouter aux favoris">
+        <span class="heart-icon">🤍</span>
+      </button>
 
-    <!-- Bouton favori en haut à droite -->
-    <button class="btn-favorite" id="btnFavorite" aria-label="Ajouter aux favoris">
-      <span class="heart-icon">🤍</span>
-    </button>
+      <div class="album-cover">
+        <img src="" alt="Pochette d'album" id="albumCover">
+      </div>
 
-    <!-- Pochette d'album -->
-    <div class="album-cover">
-      <img src="" alt="Pochette d'album" id="albumCover">
+      <div class="track-info">
+        <p class="track-title" id="trackTitle">Titre de la musique</p>
+        <p class="track-artist" id="trackArtist">Artiste</p>
+      </div>
+
+      <div class="controls">
+        <button class="btn-control" id="btnPrev" aria-label="Précédent">⏮️</button>
+        <button class="btn-control" id="btnPlay" aria-label="Lecture / Pause">▶️</button>
+        <button class="btn-control" id="btnNext" aria-label="Suivant">⏭️</button>
+      </div>
     </div>
 
-    <!-- Nom de la musique au milieu -->
-    <div class="track-info">
-      <p class="track-title" id="trackTitle">Titre de la musique</p>
-      <p class="track-artist" id="trackArtist">Artiste</p>
+    <div class="favorites-zone" id="favoritesZone">
+      <h2 class="favorites-title">Mes favoris</h2>
+      <ul class="favorites-list" id="favoritesList">
+        <!-- Les favoris seront ajoutés ici en JS -->
+      </ul>
     </div>
+  </main>
 
-    <!-- Contrôles de lecture -->
-    <div class="controls">
-      <button class="btn-control" id="btnPrev" aria-label="Précédent">⏮️</button>
-      <button class="btn-control" id="btnPlay" aria-label="Lecture / Pause">▶️</button>
-      <button class="btn-control" id="btnNext" aria-label="Suivant">⏭️</button>
+  <footer>
+    <div class="container">
+      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p class="col-md-4 mb-0 text-body-secondary">© 2025 Company, Inc</p>
+        <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none" aria-label="Bootstrap">
+          <svg class="bi me-2" width="40" height="32" aria-hidden="true"><use xlink:href="#bootstrap"></use></svg>
+        </a>
+        <ul class="nav col-md-4 justify-content-end">
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Support</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Tchat Bot</a></li>
+        </ul>
+      </footer>
     </div>
+  </footer>
 
-  </div>
-
-  <!-- Liste des favoris -->
-  <div class="favorites-zone" id="favoritesZone">
-    <h2 class="favorites-title">Mes favoris</h2>
-    <ul class="favorites-list" id="favoritesList">
-      <!-- Les favoris seront ajoutés ici en JS -->
-    </ul>
-  </div>
-<script src="../public/script.js"></script>
+  <script src="/script.js"></script>
 </body>
-<footer>
-    <div class="container"> <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"> 
-        <p class="col-md-4 mb-0 text-body-secondary">© 2025 Company, Inc</p> 
-        <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none" aria-label="Bootstrap"> <svg class="bi me-2" width="40" height="32" aria-hidden="true"><use xlink:href="#bootstrap"></use></svg> </a>
-         <ul class="nav col-md-4 justify-content-end"> 
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Support</a></li> 
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Tchat Bot</a></li> 
-        </ul> 
-    </footer> 
-</div>
-</footer>
 </html>
