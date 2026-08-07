@@ -256,22 +256,29 @@ nav.main-nav a.active::after {
   color: var(--text-primary);
 }
 
-/* ---------- BARRE DE NAVIGATION DES HUMEURS ---------- */
-/* Ces règles remplacent Bootstrap (non chargé) : elles stylent la <ul class="nav
-   nav-pills"> et ses liens <a class="nav-link"> présents dans index.ejs. */
+/* ---------- REMPLACEMENT DE BOOTSTRAP (non chargé) ---------- */
+/* La page utilise les classes de Bootstrap sans charger la bibliothèque ; on
+   redéfinit ici uniquement celles qui sont réellement employées. */
 
-/* Le conteneur <ul class="nav"> : pastilles alignées et centrées. */
+/* Base commune à toutes les listes .nav (barre des humeurs ET pied de page). */
 .nav {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
+  padding-left: 0;
+  margin: 0;
+}
+
+/* --- Barre des humeurs : <ul class="nav nav-pills"> --- */
+/* Le style « pastille ronde » est limité à .nav-pills pour ne PAS toucher le
+   pied de page, qui utilise aussi .nav / .nav-link. */
+.nav-pills {
   justify-content: center;
   gap: 0.7rem;
   padding: 1.5rem 0;
 }
 
-/* Chaque humeur est un lien rond cliquable. */
-.nav-link {
+.nav-pills .nav-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -287,23 +294,59 @@ nav.main-nav a.active::after {
   transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
 }
 
-.nav-link:hover,
-.nav-link:focus-visible {
+.nav-pills .nav-link:hover,
+.nav-pills .nav-link:focus-visible {
   transform: translateY(-3px);
   background: rgba(255, 255, 255, 0.14);
 }
 
 /* Humeur actuellement sélectionnée (classe « active »). */
-.nav-link.active {
+.nav-pills .nav-link.active {
   background: var(--accent);
   box-shadow: 0 0 0 4px var(--accent-glow);
 }
 
-/* Petites classes utilitaires reprises de Bootstrap, utilisées par l'en-tête
-   <header class="d-flex justify-content-center py-3">. */
+/* --- Liens simples (pied de page) : <a class="nav-link"> hors .nav-pills --- */
+.nav-link {
+  color: var(--text-secondary);
+  transition: color var(--transition);
+}
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: var(--text-primary);
+}
+
+/* ---------- PIED DE PAGE (mise en page façon Bootstrap) ---------- */
+/* Le pied de page d'index.ejs répartit trois colonnes : copyright à gauche,
+   logo au centre, liens à droite. */
+footer .container > footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* Chaque bloc occupe environ un tiers de la largeur (colonnes égales). */
+.col-md-4 {
+  flex: 1 1 0;
+}
+
+/* ---------- CLASSES UTILITAIRES BOOTSTRAP RÉELLEMENT UTILISÉES ---------- */
 .d-flex { display: flex; }
+.flex-wrap { flex-wrap: wrap; }
+.align-items-center { align-items: center; }
 .justify-content-center { justify-content: center; }
+.justify-content-between { justify-content: space-between; }
+.justify-content-end { justify-content: flex-end; }
 .py-3 { padding-top: 1rem; padding-bottom: 1rem; }
+.my-4 { margin-top: 1.5rem; margin-bottom: 1.5rem; }
+.mb-0 { margin-bottom: 0; }
+.px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
+.me-2 { margin-right: 0.5rem; }
+.border-top { border-top: 1px solid var(--border); }
+.text-body-secondary { color: var(--text-secondary); }
+.text-decoration-none { text-decoration: none; }
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 800px) {
@@ -317,5 +360,13 @@ nav.main-nav a.active::after {
     flex-direction: column;
     gap: 0.8rem;
     text-align: center;
+  }
+  /* Le pied de page passe en colonne : chaque bloc prend toute la largeur. */
+  .col-md-4 {
+    flex-basis: 100%;
+    text-align: center;
+  }
+  footer .container > footer .nav {
+    justify-content: center;
   }
 }
