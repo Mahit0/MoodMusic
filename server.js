@@ -18,8 +18,9 @@ const app = express();
 // Identifiants Spotify : ils sont lus depuis l'environnement (.env), jamais
 // écrits en dur dans le code, afin de ne pas exposer de secret dans le dépôt.
 // -----------------------------------------------------------------------------
-const SPOTIFY_CLIENT_ID     = process.env.SPOTIFY_CLIENT_ID;
-const SPOTIFY_CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
+require('dotenv').config({ path: __dirname + '/.env' });
+const CLIENT_ID     = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
 
 app.set('view engine', 'ejs');                            // moteur de gabarits EJS
 app.set('views', path.join(__dirname, 'views'));          // dossier des vues
