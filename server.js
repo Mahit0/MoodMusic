@@ -1,11 +1,12 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 
 const SPOTIFY_CLIENT_ID     = 'VOTRE_CLIENT_ID';
 const SPOTIFY_CLIENT_SECRET = 'VOTRE_CLIENT_SECRET';
 
 app.set('view engine', 'ejs');   // moteur de gabarits EJS
-app.use(express.static('./public')); // sert script.js, style.css, etc.
+app.use(express.static(path.join(__dirname, 'public'))); // sert script.js, style.css, etc.
 
 // Correspondance humeur -> mots-clés
 const moodQueries = {
@@ -27,7 +28,7 @@ app.get('/api/playlist', async (req, res) => {
   const tokenRes = await fetch('https://accounts.spotify.com/api/token', {
     method: 'POST',
     headers: {
-      'Authorization': 'Basic ' + Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64'),
+      'Authorization': 'Basic ' + Buffer.from(`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`).toString('base64'),  // ← remplacer ici
       'Content-Type': 'application/x-www-form-urlencoded'
     },
     body: 'grant_type=client_credentials'
@@ -52,4 +53,5 @@ app.get('/api/playlist', async (req, res) => {
   res.json(tracks);
 });
 
-app.listen(3000, () => console.log('Serveur sur http://localhost:3000'));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Serveur sur le port ${PORT}`));
