@@ -21,7 +21,42 @@
   </div>
 <body>
 
-    
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <!-- Lecteur de musique -->
+  <div class="music-player" id="player">
+
+    <!-- Bouton favori en haut à droite -->
+    <button class="btn-favorite" id="btnFavorite" aria-label="Ajouter aux favoris">
+      <span class="heart-icon">🤍</span>
+    </button>
+
+    <!-- Pochette d'album -->
+    <div class="album-cover">
+      <img src="" alt="Pochette d'album" id="albumCover">
+    </div>
+
+    <!-- Nom de la musique au milieu -->
+    <div class="track-info">
+      <p class="track-title" id="trackTitle">Titre de la musique</p>
+      <p class="track-artist" id="trackArtist">Artiste</p>
+    </div>
+
+    <!-- Contrôles de lecture -->
+    <div class="controls">
+      <button class="btn-control" id="btnPrev" aria-label="Précédent">⏮️</button>
+      <button class="btn-control" id="btnPlay" aria-label="Lecture / Pause">▶️</button>
+      <button class="btn-control" id="btnNext" aria-label="Suivant">⏭️</button>
+    </div>
+
+  </div>
+
+  <!-- Liste des favoris -->
+  <div class="favorites-zone" id="favoritesZone">
+    <h2 class="favorites-title">Mes favoris</h2>
+    <ul class="favorites-list" id="favoritesList">
+      <!-- Les favoris seront ajoutés ici en JS -->
+    </ul>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
