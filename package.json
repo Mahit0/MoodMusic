@@ -1,0 +1,18 @@
+{
+  "_commentaire": "Manifeste du projet : il déclare les dépendances que 'npm install' doit récupérer. Sans ce fichier, Express et EJS ne sont pas installés et le serveur ne démarre pas, même si Node est présent.",
+  "name": "moodmusic",
+  "version": "1.0.0",
+  "description": "Petit lecteur musical qui propose des titres Spotify selon l'humeur choisie.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
+  }
+}
