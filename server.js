@@ -38,7 +38,6 @@ const moodQueries = {
 console.log('--- Vérification config ---');
 console.log('CLIENT_ID     :', CLIENT_ID     ? `OK (${CLIENT_ID.length} caractères)` : '❌ MANQUANT');
 console.log('CLIENT_SECRET :', CLIENT_SECRET ? `OK (${CLIENT_SECRET.length} caractères)` : '❌ MANQUANT');
-console.log('PORT          :', PORT);
 console.log('---------------------------');
 
 
