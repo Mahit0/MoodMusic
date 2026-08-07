@@ -256,6 +256,55 @@ nav.main-nav a.active::after {
   color: var(--text-primary);
 }
 
+/* ---------- BARRE DE NAVIGATION DES HUMEURS ---------- */
+/* Ces règles remplacent Bootstrap (non chargé) : elles stylent la <ul class="nav
+   nav-pills"> et ses liens <a class="nav-link"> présents dans index.ejs. */
+
+/* Le conteneur <ul class="nav"> : pastilles alignées et centrées. */
+.nav {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+  padding: 1.5rem 0;
+}
+
+/* Chaque humeur est un lien rond cliquable. */
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  font-size: 1.5rem;
+  line-height: 1;
+  border-radius: 50%;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* Humeur actuellement sélectionnée (classe « active »). */
+.nav-link.active {
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-glow);
+}
+
+/* Petites classes utilitaires reprises de Bootstrap, utilisées par l'en-tête
+   <header class="d-flex justify-content-center py-3">. */
+.d-flex { display: flex; }
+.justify-content-center { justify-content: center; }
+.py-3 { padding-top: 1rem; padding-bottom: 1rem; }
+
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 800px) {
   nav.main-nav {
