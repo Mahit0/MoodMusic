@@ -12,14 +12,18 @@
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <% const moodButtons = [
-    { id: 'home', icon: '🏠', active: true },
-    { id: 'happy', icon: '😊' },
-    { id: 'chill', icon: '😎' },
-    { id: 'sad', icon: '😭' },
-    { id: 'energy', icon: '🥳' },
-    { id: 'fun', icon: '🎯' }
-  ]; %>
+  <%
+    // Barre d'humeurs. L'id sert de clé pour retrouver la playlist Spotify
+    // correspondante dans script.js (objet moodPlaylists).
+    const moodButtons = [
+      { id: 'home',   icon: '🏠', active: true },
+      { id: 'happy',  icon: '😊' },
+      { id: 'chill',  icon: '😎' },
+      { id: 'sad',    icon: '😭' },
+      { id: 'energy', icon: '🥳' },
+      { id: 'fun',    icon: '🎯' }
+    ];
+  %>
 
   <div class="container">
     <header class="d-flex justify-content-center py-3">
@@ -38,30 +42,16 @@
   </div>
 
   <main>
-    <div class="music-player" id="player">
-
-      <div class="album-cover">
-        <img src="" alt="Pochette d'album" id="albumCover">
-      </div>
-
-      <div class="track-info">
-        <p class="track-title" id="trackTitle">Titre de la musique</p>
-        <p class="track-artist" id="trackArtist">Artiste</p>
-      </div>
-
-      <div class="controls">
-        <button class="btn-control" id="btnPrev" aria-label="Précédent">⏮️</button>
-        <button class="btn-control btn-play" id="btnPlay" aria-label="Lecture / Pause">▶️</button>
-        <button class="btn-control" id="btnNext" aria-label="Suivant">⏭️</button>
-      </div>
-    </div>
-
-<iframe
-  src="https://open.spotify.com/embed/playlist/37i9dQZF1DXdPec7aLTmlC"
-  width="100%" height="380" frameborder="0"
-  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-  loading="lazy">
-</iframe>
+    <!-- Lecteur Spotify intégré. script.js modifie son attribut src à chaque
+         clic sur un emoji pour afficher la playlist de l'humeur choisie. -->
+    <iframe
+      id="spotifyPlayer"
+      class="spotify-embed"
+      src="https://open.spotify.com/embed/playlist/37i9dQZF1DXdPec7aLTmlC"
+      width="100%" height="380" frameborder="0"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy">
+    </iframe>
   </main>
 
   <footer class="site-footer">
