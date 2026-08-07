@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 
-const CLIENT_ID     = 'VOTRE_CLIENT_ID';
-const CLIENT_SECRET = 'VOTRE_CLIENT_SECRET';
+const SPOTIFY_CLIENT_ID     = 'VOTRE_CLIENT_ID';
+const SPOTIFY_CLIENT_SECRET = 'VOTRE_CLIENT_SECRET';
 
 app.set('view engine', 'ejs');   // moteur de gabarits EJS
 app.use(express.static('public')); // sert script.js, style.css, etc.
