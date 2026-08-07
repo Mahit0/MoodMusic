@@ -169,6 +169,207 @@ nav.main-nav a.active::after {
   box-shadow: 0 0 0 6px var(--accent-glow);
 }
 
+/* ============================================================
+   MOOD NAV (pills du header : 🏠 😊 😎 😭 🥳 🎯)
+   ============================================================ */
+.mood-nav {
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.mood-nav .nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  font-size: 1.2rem;
+  transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+}
+
+.mood-nav .nav-link:hover,
+.mood-nav .nav-link:focus-visible {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.mood-nav .nav-link.active {
+  background: var(--accent);
+  box-shadow: 0 0 0 6px var(--accent-glow);
+}
+
+/* Chaque mood peut prendre la couleur de son humeur au survol/actif */
+.mood-nav li[data-mood="happy"] .nav-link.active   { background: var(--happy); box-shadow: 0 0 0 6px rgba(245, 158, 11, 0.3); }
+.mood-nav li[data-mood="chill"] .nav-link.active   { background: var(--chill); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.3); }
+.mood-nav li[data-mood="sad"] .nav-link.active     { background: var(--sad); box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.3); }
+.mood-nav li[data-mood="energy"] .nav-link.active  { background: var(--energetic); box-shadow: 0 0 0 6px rgba(239, 68, 68, 0.3); }
+.mood-nav li[data-mood="fun"] .nav-link.active     { background: var(--romantic); box-shadow: 0 0 0 6px rgba(236, 72, 153, 0.3); }
+
+/* ============================================================
+   MUSIC PLAYER
+   ============================================================ */
+main {
+  width: min(500px, 90%);
+  margin: 2.5rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.music-player {
+  position: relative;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  backdrop-filter: blur(12px);
+}
+
+.btn-favorite {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: transform var(--transition), background var(--transition);
+}
+
+.btn-favorite:hover,
+.btn-favorite:focus-visible {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.btn-favorite.is-favorite .heart-icon::before {
+  content: "❤️";
+}
+
+.album-cover {
+  width: 220px;
+  height: 220px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-secondary);
+  margin-bottom: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.album-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.track-info {
+  margin-bottom: 1.75rem;
+}
+
+.track-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.track-artist {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.btn-control {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.4rem;
+  color: var(--text-primary);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.btn-control:hover,
+.btn-control:focus-visible {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-play {
+  width: 56px;
+  height: 56px;
+  font-size: 1.6rem;
+  background: var(--accent);
+}
+
+.btn-play:hover,
+.btn-play:focus-visible {
+  background: var(--accent-hover);
+  transform: scale(1.05);
+}
+
+/* ============================================================
+   FAVORITES ZONE
+   ============================================================ */
+.favorites-zone {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.favorites-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+}
+
+.favorites-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.favorites-list:empty::after {
+  content: "Aucun favori pour le moment.";
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.favorites-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.8rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 0.9rem;
+}
+
 /* ---------- FOOTER ---------- */
 .site-footer {
   border-top: 1px solid var(--border);
@@ -256,98 +457,6 @@ nav.main-nav a.active::after {
   color: var(--text-primary);
 }
 
-/* ---------- REMPLACEMENT DE BOOTSTRAP (non chargé) ---------- */
-/* La page utilise les classes de Bootstrap sans charger la bibliothèque ; on
-   redéfinit ici uniquement celles qui sont réellement employées. */
-
-/* Base commune à toutes les listes .nav (barre des humeurs ET pied de page). */
-.nav {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  padding-left: 0;
-  margin: 0;
-}
-
-/* --- Barre des humeurs : <ul class="nav nav-pills"> --- */
-/* Le style « pastille ronde » est limité à .nav-pills pour ne PAS toucher le
-   pied de page, qui utilise aussi .nav / .nav-link. */
-.nav-pills {
-  justify-content: center;
-  gap: 0.7rem;
-  padding: 1.5rem 0;
-}
-
-.nav-pills .nav-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 56px;
-  height: 56px;
-  font-size: 1.5rem;
-  line-height: 1;
-  border-radius: 50%;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  color: var(--text-primary);
-  cursor: pointer;
-  transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
-}
-
-.nav-pills .nav-link:hover,
-.nav-pills .nav-link:focus-visible {
-  transform: translateY(-3px);
-  background: rgba(255, 255, 255, 0.14);
-}
-
-/* Humeur actuellement sélectionnée (classe « active »). */
-.nav-pills .nav-link.active {
-  background: var(--accent);
-  box-shadow: 0 0 0 4px var(--accent-glow);
-}
-
-/* --- Liens simples (pied de page) : <a class="nav-link"> hors .nav-pills --- */
-.nav-link {
-  color: var(--text-secondary);
-  transition: color var(--transition);
-}
-.nav-link:hover,
-.nav-link:focus-visible {
-  color: var(--text-primary);
-}
-
-/* ---------- PIED DE PAGE (mise en page façon Bootstrap) ---------- */
-/* Le pied de page d'index.ejs répartit trois colonnes : copyright à gauche,
-   logo au centre, liens à droite. */
-footer .container > footer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-/* Chaque bloc occupe environ un tiers de la largeur (colonnes égales). */
-.col-md-4 {
-  flex: 1 1 0;
-}
-
-/* ---------- CLASSES UTILITAIRES BOOTSTRAP RÉELLEMENT UTILISÉES ---------- */
-.d-flex { display: flex; }
-.flex-wrap { flex-wrap: wrap; }
-.align-items-center { align-items: center; }
-.justify-content-center { justify-content: center; }
-.justify-content-between { justify-content: space-between; }
-.justify-content-end { justify-content: flex-end; }
-.py-3 { padding-top: 1rem; padding-bottom: 1rem; }
-.my-4 { margin-top: 1.5rem; margin-bottom: 1.5rem; }
-.mb-0 { margin-bottom: 0; }
-.px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
-.me-2 { margin-right: 0.5rem; }
-.border-top { border-top: 1px solid var(--border); }
-.text-body-secondary { color: var(--text-secondary); }
-.text-decoration-none { text-decoration: none; }
-
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 800px) {
   nav.main-nav {
@@ -361,12 +470,8 @@ footer .container > footer {
     gap: 0.8rem;
     text-align: center;
   }
-  /* Le pied de page passe en colonne : chaque bloc prend toute la largeur. */
-  .col-md-4 {
-    flex-basis: 100%;
-    text-align: center;
-  }
-  footer .container > footer .nav {
-    justify-content: center;
+  .album-cover {
+    width: 180px;
+    height: 180px;
   }
 }
