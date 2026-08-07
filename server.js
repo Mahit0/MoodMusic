@@ -43,6 +43,11 @@ app.get('/', (req, res) => res.render('index'));
 // Renvoie les titres de la playlist correspondant à l'humeur
 app.get('/api/playlist', async (req, res) => {
   const playlistId = moodPlaylists[req.query.mood] || moodPlaylists.happy;
+  const playlistId = moodPlaylists[req.query.mood] || moodPlaylists.chill;
+  const playlistId = moodPlaylists[req.query.mood] || moodPlaylists.sad;
+const playlistId = moodPlaylists[req.query.mood] || moodPlaylists.energy;
+  const playlistId = moodPlaylists[req.query.mood] || moodPlaylists.fun;
+
 
   try {
     const token = await getToken();
