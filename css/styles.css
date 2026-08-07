@@ -1,0 +1,38 @@
+:root {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --card-bg: rgba(255, 255, 255, 0.08);
+
+  --text-primary: #ffffff;
+  --text-secondary: #cbd5e1;
+
+  --happy: #f59e0b;
+  --sad: #3b82f6;
+  --chill: #10b981;
+  --energetic: #ef4444;
+  --romantic: #ec4899;
+
+  --border: rgba(255, 255, 255, 0.1);
+
+  --radius: 16px;
+  --transition: 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background:
+    radial-gradient(circle at top left, #1e293b 0%, #0f172a 60%);
+  min-height: 100vh;
+  color: var(--text-primary);
+}
+
+.container {
+  width: min(1200px, 90%);
+  margin: auto;
+}
