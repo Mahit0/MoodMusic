@@ -2,20 +2,23 @@
   --bg-primary: #0f172a;
   --bg-secondary: #1e293b;
   --card-bg: rgba(255, 255, 255, 0.08);
-
   --text-primary: #ffffff;
   --text-secondary: #cbd5e1;
-
   --happy: #f59e0b;
   --sad: #3b82f6;
   --chill: #10b981;
   --energetic: #ef4444;
   --romantic: #ec4899;
-
   --border: rgba(255, 255, 255, 0.1);
-
   --radius: 16px;
   --transition: 0.3s ease;
+
+  /* Ajouts pour l'identité musique */
+  --accent: #8b5cf6;
+  --accent-hover: #a78bfa;
+  --accent-glow: rgba(139, 92, 246, 0.35);
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
 }
 
 * {
@@ -25,9 +28,8 @@
 }
 
 body {
-  font-family: "Inter", sans-serif;
-  background:
-    radial-gradient(circle at top left, #1e293b 0%, #0f172a 60%);
+  font-family: var(--font-body);
+  background: radial-gradient(circle at top left, #1e293b 0%, #0f172a 60%);
   min-height: 100vh;
   color: var(--text-primary);
 }
@@ -35,4 +37,236 @@ body {
 .container {
   width: min(1200px, 90%);
   margin: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent-hover);
+  outline-offset: 2px;
+}
+
+/* ---------- HEADER ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+}
+
+.logo-mark {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 22px;
+}
+
+.logo-mark span {
+  width: 4px;
+  border-radius: 2px;
+  background: var(--accent);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+.logo-mark span:nth-child(1) { height: 40%; animation-delay: 0s; }
+.logo-mark span:nth-child(2) { height: 100%; animation-delay: 0.15s; }
+.logo-mark span:nth-child(3) { height: 65%; animation-delay: 0.3s; }
+.logo-mark span:nth-child(4) { height: 85%; animation-delay: 0.45s; }
+
+@keyframes pulse {
+  0%, 100% { transform: scaleY(0.5); opacity: 0.7; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-mark span { animation: none; }
+}
+
+nav.main-nav {
+  display: flex;
+  gap: 2rem;
+}
+
+nav.main-nav a {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  transition: color var(--transition);
+  position: relative;
+}
+
+nav.main-nav a:hover,
+nav.main-nav a:focus-visible {
+  color: var(--text-primary);
+}
+
+nav.main-nav a.active {
+  color: var(--text-primary);
+}
+
+nav.main-nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-ghost {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  padding: 0.55rem 0.9rem;
+  transition: color var(--transition);
+}
+.btn-ghost:hover,
+.btn-ghost:focus-visible {
+  color: var(--text-primary);
+}
+
+.btn-primary {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  transition: background var(--transition), box-shadow var(--transition);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: var(--accent-hover);
+  box-shadow: 0 0 0 6px var(--accent-glow);
+}
+
+/* ---------- FOOTER ---------- */
+.site-footer {
+  border-top: 1px solid var(--border);
+  background: var(--bg-secondary);
+  margin-top: 4rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 2.5rem;
+  padding: 3.5rem 0 2.5rem;
+}
+
+.footer-brand .logo {
+  margin-bottom: 0.9rem;
+}
+
+.footer-brand p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  max-width: 32ch;
+}
+
+.footer-col h4 {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.footer-col a {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  transition: color var(--transition);
+}
+.footer-col a:hover,
+.footer-col a:focus-visible {
+  color: var(--accent-hover);
+}
+
+/* Ligne signature : dégradé reprenant les 5 couleurs mood du site */
+.mood-line {
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--happy),
+    var(--energetic),
+    var(--romantic),
+    var(--sad),
+    var(--chill)
+  );
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.4rem 0;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.footer-socials {
+  display: flex;
+  gap: 1rem;
+}
+.footer-socials a {
+  color: var(--text-secondary);
+  transition: color var(--transition);
+}
+.footer-socials a:hover,
+.footer-socials a:focus-visible {
+  color: var(--text-primary);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 800px) {
+  nav.main-nav {
+    display: none;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 0.8rem;
+    text-align: center;
+  }
 }
